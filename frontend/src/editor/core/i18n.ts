@@ -49,7 +49,7 @@ i18n
         const cleanBasePath = basePath.endsWith("/")
           ? basePath.slice(0, -1)
           : basePath;
-        return `${cleanBasePath}/locales/${lng}/${namespaces[0]}.toml`;
+        return `${cleanBasePath}/locales/${lng}/${namespaces[0]}.toml?v=pss`;
       },
     },
 

@@ -3,9 +3,16 @@
 import { signIn } from "next-auth/react";
 import { useEffect, useRef } from "react";
 import { PssLogo } from "@/components/pss-logo";
+import { StaffPasswordForm } from "@/components/StaffPasswordForm";
 import { APP_NAME, ORG_NAME } from "@/lib/brand";
 
-export default function LandingClient() {
+export default function LandingClient({
+  passwordLogin = false,
+  afterLoginUrl = "/dashboard",
+}: {
+  passwordLogin?: boolean;
+  afterLoginUrl?: string;
+}) {
   const particlesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -377,17 +384,25 @@ export default function LandingClient() {
           <h1 className="landing-h1">{APP_NAME}</h1>
           <p className="landing-subtitle">PDF editor for PSS staff</p>
 
-          <button
-            className="login-btn"
-            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-              <polyline points="10 17 15 12 10 7"/>
-              <line x1="15" y1="12" x2="3" y2="12"/>
-            </svg>
-            Sign in with Google — PSS account
-          </button>
+          {passwordLogin ? (
+            <StaffPasswordForm afterLoginUrl={afterLoginUrl} />
+          ) : (
+            <button
+              className="login-btn"
+              onClick={() =>
+              signIn("google", {
+                callbackUrl: afterLoginUrl.startsWith("/") ? afterLoginUrl : "/dashboard",
+              })
+            }
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                <polyline points="10 17 15 12 10 7"/>
+                <line x1="15" y1="12" x2="3" y2="12"/>
+              </svg>
+              Sign in with Google — PSS account
+            </button>
+          )}
 
           <div className="stats-row">
             <div className="stat">

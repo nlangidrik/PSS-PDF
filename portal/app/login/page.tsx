@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { resolveCallbackUrl } from "@/lib/callback-url";
 import LoginClient from "@/components/LoginClient";
+import { editorPublicUrl, staffPasswordLoginEnabled } from "@/lib/staff-login";
 
 export default async function LoginPage({
   searchParams,
@@ -13,6 +14,12 @@ export default async function LoginPage({
   const nextAuthUrl = process.env.NEXTAUTH_URL ?? "http://localhost:3002/portal";
   const destination = resolveCallbackUrl(params.callbackUrl, nextAuthUrl);
   const session = await getServerSession(authOptions);
-  if (session) redirect(destination);
-  return <LoginClient callbackUrl={params.callbackUrl ?? "/dashboard"} />;
+  if (session) redirect(editorPublicUrl());
+  return (
+    <LoginClient
+      callbackUrl={params.callbackUrl ?? destination}
+      passwordLogin={staffPasswordLoginEnabled()}
+      afterLoginUrl={editorPublicUrl()}
+    />
+  );
 }
