@@ -1,0 +1,63 @@
+services:
+  portal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pss-pdf-portal
+    restart: unless-stopped
+    stop_grace_period: 10s
+    ports:
+      - "3002:3000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - TZ=Pacific/Majuro
+    depends_on:
+      portal-db:
+        condition: service_healthy
+    networks:
+      - pss-pdf-portal-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:3000/portal', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  portal-db:
+    image: postgres:16-alpine
+    container_name: pss-pdf-portal-db
+    restart: unless-stopped
+    stop_grace_period: 10s
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB:-pss_pdf_portal}
+    volumes:
+      - pss_pdf_portal_pg:/var/lib/postgresql/data
+    networks:
+      - pss-pdf-portal-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+networks:
+  pss-pdf-portal-network:
+    name: pss-pdf-portal-network
+    driver: bridge
+
+volumes:
+  pss_pdf_portal_pg:
+    name: pss_pdf_portal_pg
