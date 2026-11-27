@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AuditEventType {
+  SIGN_IN
+  SIGN_IN_DENIED
+  SIGN_OUT
+  ADMIN_LOGIN
+  USER_ROLE_CHANGED
+  USER_ACTIVATED
+  USER_DEACTIVATED
+  USER_SOFT_DELETED
+}
+
+model User {
+  id                 String    @id @default(cuid())
+  name               String
+  email              String    @unique
+  password           String?
+  image              String?
+  role               Role      @default(USER)
+  isActive           Boolean   @default(true)
+  deletedAt          DateTime?
+  mustChangePassword Boolean   @default(true) @map("mustChangePassword")
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model SystemSetting {
+  id            String   @id @default(cuid())
+  smtpServer    String?
+  smtpPort      Int?
+  smtpSecurity  String?
+  smtpUsername  String?
+  smtpPassword  String?
+  smtpFromEmail String?
+  updatedAt     DateTime @updatedAt
+}
+
+model AuditEvent {
+  id          String         @id @default(cuid())
+  eventType   AuditEventType
+  actorEmail  String?
+  actorName   String?
+  targetEmail String?
+  ipAddress   String?
+  metadata    Json?
+  occurredAt  DateTime       @default(now())
+
+  @@index([actorEmail])
+  @@index([targetEmail])
+  @@index([eventType])
+  @@index([occurredAt])
+}
