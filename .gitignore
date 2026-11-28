@@ -25,6 +25,8 @@ pipeline/
 !app/core/src/test/java/stirling/software/SPDF/controller/api/pipeline/
 customFiles/
 configs/
+# Local PSS editor container state: logs, settings, tessdata, and heap dumps.
+docker/pss/data/
 watchedFolders/
 clientWebUI/
 policy-webhook-spool/
@@ -167,6 +169,7 @@ app/core/src/main/resources/static/images/google-drive.svg
 
 # Log file
 *.log
+*.log.gz
 
 # BlueJ files
 *.ctxt
