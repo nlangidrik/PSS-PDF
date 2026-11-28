@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { AuditEventType, Prisma } from "@prisma/client";
 import { requireAdmin } from "@/lib/auth-helpers";
-import { prisma } from "@/lib/prisma";
+import { parseActivityPage, parseActivityPageSize } from "@/lib/server/activity-page";
+import { listAuditEvents } from "@/lib/server/audit-log-page";
+import { majuroInclusiveDayRange } from "@/lib/server/majuro-time";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +21,8 @@ export async function GET(req: Request) {
     const event = url.searchParams.get("event")?.trim();
     const from = url.searchParams.get("from")?.trim();
     const to = url.searchParams.get("to")?.trim();
+    const pageSize = parseActivityPageSize(url.searchParams.get("size"));
+    const requestedPage = parseActivityPage(url.searchParams.get("page"));
 
     if (event && !EVENT_TYPES.has(event)) {
       return NextResponse.json({ message: "Unknown event" }, { status: 400 });
@@ -31,32 +35,16 @@ export async function GET(req: Request) {
     if (event) where.eventType = event as AuditEventType;
 
     if (from || to) {
-      const occurredAt: Prisma.DateTimeFilter = {};
-      if (from) {
-        const start = new Date(from);
-        if (Number.isNaN(start.getTime())) {
-          return NextResponse.json({ message: "Invalid from date" }, { status: 400 });
-        }
-        occurredAt.gte = start;
+      const range = majuroInclusiveDayRange(from || undefined, to || undefined);
+      if (range === "invalid") {
+        return NextResponse.json({ message: "Invalid date" }, { status: 400 });
       }
-      if (to) {
-        const end = new Date(to);
-        if (Number.isNaN(end.getTime())) {
-          return NextResponse.json({ message: "Invalid to date" }, { status: 400 });
-        }
-        end.setHours(23, 59, 59, 999);
-        occurredAt.lte = end;
-      }
-      where.occurredAt = occurredAt;
+      where.occurredAt = range;
     }
 
-    const events = await prisma.auditEvent.findMany({
-      where,
-      orderBy: { occurredAt: "desc" },
-      take: 200,
-    });
+    const result = await listAuditEvents({ where, page: requestedPage, pageSize });
 
-    return NextResponse.json({ events });
+    return NextResponse.json(result);
   } catch (error) {
     console.error("[AUDIT_LOGS]", error);
     return NextResponse.json({ message: "Internal error" }, { status: 500 });

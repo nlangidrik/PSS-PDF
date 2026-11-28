@@ -63,3 +63,18 @@ model AuditEvent {
   @@index([eventType])
   @@index([occurredAt])
 }
+
+model UsageEvent {
+  id            String   @id @default(cuid())
+  userId        String?
+  actorEmail    String?
+  actorName     String?
+  action        String
+  fileName      String?
+  fileSizeBytes Int?
+  occurredAt    DateTime @default(now())
+
+  @@index([actorEmail])
+  @@index([action])
+  @@index([occurredAt])
+}
