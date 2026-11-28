@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "Stirling PDF",
+  "productName": "BytePaper",
   "mainBinaryName": "Stirling-PDF",
   "version": "3.5.0",
   "identifier": "stirling.pdf.dev",

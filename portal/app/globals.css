@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 210 100% 20%; /* PSS blue */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 47 100% 50%; /* PSS gold */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 100% 20%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 47 100% 50%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* DSC "holographic console" surface — re-scopes the design tokens so every
+   child (cards, tabs, list rows, analytics) renders in the Discovery theme.
+   Light/dark variants follow the app's `.dark` class. */
+@layer base {
+  .dsc-surface {
+    --background: 198 100% 96% / 0.55;
+    --foreground: 222 47% 16%;
+    --card: 0 0% 100% / 0.72;
+    --card-foreground: 222 47% 16%;
+    --popover: 0 0% 100% / 0.9;
+    --popover-foreground: 222 47% 16%;
+    --primary: 191 100% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 190 90% 85%;
+    --secondary-foreground: 200 70% 25%;
+    --muted: 198 90% 92%;
+    --muted-foreground: 200 45% 38%;
+    --accent: 198 90% 90%;
+    --accent-foreground: 200 70% 25%;
+    --destructive: 350 89% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 199 100% 42% / 0.35;
+    --input: 199 100% 42% / 0.35;
+    --ring: 191 100% 42%;
+    --dsc-surface-bg: radial-gradient(ellipse at top, #eaf7ff 0%, #d6ecfa 55%, #cde6f5 100%);
+    --dsc-surface-glow: inset 0 0 120px rgba(0, 150, 220, 0.10);
+  }
+
+  .dark .dsc-surface {
+    --background: 200 80% 6% / 0.55;
+    --foreground: 190 60% 93%;
+    --card: 204 60% 12% / 0.55;
+    --card-foreground: 190 60% 93%;
+    --popover: 204 60% 10% / 0.92;
+    --popover-foreground: 190 60% 93%;
+    --primary: 190 100% 55%;
+    --primary-foreground: 200 80% 8%;
+    --secondary: 190 80% 30%;
+    --secondary-foreground: 190 60% 90%;
+    --muted: 204 50% 10%;
+    --muted-foreground: 195 35% 68%;
+    --accent: 204 50% 16%;
+    --accent-foreground: 190 60% 90%;
+    --destructive: 350 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 190 100% 60% / 0.3;
+    --input: 190 100% 60% / 0.3;
+    --ring: 190 100% 55%;
+    --dsc-surface-bg: radial-gradient(ellipse at top, #0a1628 0%, #050a12 55%, #02050a 100%);
+    --dsc-surface-glow: inset 0 0 120px rgba(0, 212, 255, 0.07);
+  }
+}
+
+/* Mobile-specific improvements */
+@layer utilities {
+  /* Better touch targets for mobile */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improved mobile scrolling */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+/* Mobile-optimized text selection */
+  .mobile-select {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  .no-zoom {
+    font-size: 16px;
+  }
+  
+  /* Mobile-friendly focus states */
+  .mobile-focus:focus {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  /* Improved mobile typography */
+  .mobile-text {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Mobile-optimized line heights */
+  .mobile-leading {
+    line-height: 1.5;
+  }
+  
+  /* Better mobile spacing */
+  .mobile-spacing {
+    @apply space-y-4 md:space-y-6;
+  }
+  
+  /* Mobile-friendly card shadows */
+  .mobile-shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Improved mobile button states */
+  .mobile-button {
+    @apply touch-target mobile-focus transition-all duration-200;
+  }
+  
+  /* Mobile-optimized form elements */
+  .mobile-input {
+    @apply no-zoom mobile-focus;
+  }
+  
+  /* Better mobile navigation */
+  .mobile-nav {
+    @apply touch-target mobile-focus;
+  }
+}
+

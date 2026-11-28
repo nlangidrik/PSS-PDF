@@ -114,6 +114,6 @@ class PdfMetadataServiceBasicTest {
 
         // Verify basic calls
         verify(testInfo, times(1)).setModificationDate(any(Calendar.class));
-        verify(testInfo, times(1)).setProducer(STIRLING_PDF_LABEL);
+        verify(testInfo, times(1)).setProducer("BytePaper (based on Stirling-PDF)");
     }
 }

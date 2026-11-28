@@ -353,7 +353,7 @@ export default function HomePage() {
     )?.hideToolPanel ??
       false);
 
-  const brandAltText = t("home.mobile.brandAlt", "Stirling PDF logo");
+  const brandAltText = t("home.mobile.brandAlt", "BytePaper logo");
 
   const quickNavToolReasons = useMemo(() => {
     const reasons: QuickNavToolReasons = {};
@@ -529,7 +529,7 @@ export default function HomePage() {
   // all share the one `convert` tool, so prefer a per-URL SEO override when the
   // path has one - this keeps the hydrated title/description matching the
   // keyword-targeted copy that crawlers see in the prerendered HTML.
-  const appName = config?.appNameNavbar || "Stirling PDF";
+  const appName = config?.appNameNavbar || "BytePaper";
   // The override copy is English-only (it mirrors the prerendered HTML), so
   // every other locale keeps its translated tool name and description.
   const isEnglish = (i18n.resolvedLanguage || i18n.language || "").startsWith(

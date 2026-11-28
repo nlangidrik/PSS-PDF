@@ -3,9 +3,9 @@ import { useAppConfig } from "@editor/contexts/AppConfigContext";
 import { useLogoAssets } from "@editor/hooks/useLogoAssets";
 
 /**
- * The served PWA manifest is a static JSON file (manifest.json) that hardcodes
- * "Stirling PDF". The installed PWA name must reflect the configured
- * `ui.appNameNavbar` instead (issue #5492). The static file cannot interpolate
+ * The served PWA manifest is a static JSON file (manifest.json). The installed
+ * PWA name must reflect the configured `ui.appNameNavbar` (issue #5492). The
+ * static file cannot interpolate
  * runtime config, so the manifest is rebuilt at runtime: fetch the static file,
  * merge `name`/`short_name` from the config, and inject the result as a blob
  * URL into the existing <link rel="manifest">.

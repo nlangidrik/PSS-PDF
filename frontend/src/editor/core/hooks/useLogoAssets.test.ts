@@ -19,6 +19,7 @@ describe("useLogoAssets - Logo Asset Files", () => {
   const requiredAssets = [
     "logo-tooltip.svg",
     "Firstpage.png",
+    "apple-touch-icon.png",
     "favicon.ico",
     "logo192.png",
     "logo512.png",

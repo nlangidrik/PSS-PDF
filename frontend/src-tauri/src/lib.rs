@@ -156,7 +156,7 @@ pub fn run() {
           .message(format!(
             "Stirling PDF could not apply your managed settings and cannot start.\n\n{err}\n\nContact your administrator to correct the provisioning file or restore access to the settings store, then restart Stirling PDF."
           ))
-          .title("Stirling PDF — managed settings error")
+          .title("BytePaper — managed settings error")
           .kind(MessageDialogKind::Error)
           .show(move |_| handle.exit(1));
         // Keep the event loop alive for the dialog, without opening the workspace or backend.

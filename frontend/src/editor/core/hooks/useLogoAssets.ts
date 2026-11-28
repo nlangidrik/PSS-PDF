@@ -18,6 +18,7 @@ export function useLogoAssets() {
       tooltipLogo: `${folderPath}/logo-tooltip.svg`,
       firstPage: `${folderPath}/Firstpage.png`,
       favicon: `${folderPath}/favicon.ico`,
+      appleTouch: `${folderPath}/apple-touch-icon.png`,
       logo192: `${folderPath}/logo192.png`,
       logo512: `${folderPath}/logo512.png`,
       manifestHref: `${BASE_PATH}/manifest.json`,

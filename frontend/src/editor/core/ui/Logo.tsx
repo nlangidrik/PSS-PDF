@@ -1,23 +1,23 @@
 import type { CSSProperties } from "react";
-import { Icon } from "@editor/ui/Icon";
-import wordmarkLightUrl from "@editor/assets/brand/branding-logo/wordmark-light.svg";
-import wordmarkDarkUrl from "@editor/assets/brand/branding-logo/wordmark-dark.svg";
-// The mark takes its two fills from the brand mark's path classes.
-import "@editor/components/shared/BrandMark.css";
+import bytepaperIconUrl from "@editor/assets/brand/bytepaper-icon.png";
+import bytepaperLogoUrl from "@editor/assets/brand/bytepaper-logo.png";
 import "@editor/ui/Logo.css";
 
-/** iconOnly = mark; textOnly = "Stirling" wordmark; iconAndText = both. */
+export const APP_NAME = "BytePaper";
+export const APP_TAGLINE = "Less Paper, More Possibilities";
+
+/** iconOnly = simplified icon; textOnly = app name; iconAndText = full logo and name. */
 export type LogoVariant = "iconOnly" | "iconAndText" | "textOnly";
 
 interface LogoProps {
   variant?: LogoVariant;
-  /** Layout for iconAndText: mark left of text, or stacked above it. */
+  /** Layout for iconAndText: mark left of the name, or stacked above it. */
   orientation?: "horizontal" | "vertical";
   /** Height of the mark (CSS length). */
   iconHeight?: string;
-  /** Height of the wordmark (CSS length). */
+  /** Height of the name (CSS length). */
   textHeight?: string;
-  /** Gap between mark and wordmark. */
+  /** Gap between mark and name. */
   gap?: string;
   className?: string;
   style?: CSSProperties;
@@ -25,10 +25,8 @@ interface LogoProps {
 }
 
 /**
- * Shared brand lockup used across editor + processor. The mark is theme-
- * agnostic; the wordmark swaps light/dark via CSS so it tracks the active
- * colour scheme in both the editor (data-mantine-color-scheme) and the portal
- * (data-theme).
+ * App mark and name. iconOnly uses the simplified icon. iconAndText uses the
+ * full logo. The name uses the current text colour.
  */
 export function Logo({
   variant = "iconAndText",
@@ -38,10 +36,11 @@ export function Logo({
   gap = "0.5rem",
   className,
   style,
-  alt = "Stirling",
+  alt = APP_NAME,
 }: LogoProps) {
   const showIcon = variant === "iconOnly" || variant === "iconAndText";
   const showText = variant === "textOnly" || variant === "iconAndText";
+  const markUrl = variant === "iconOnly" ? bytepaperIconUrl : bytepaperLogoUrl;
 
   const cls = [
     "sui-logo",
@@ -51,7 +50,6 @@ export function Logo({
     .filter(Boolean)
     .join(" ");
 
-  // Layout set inline so a consumer's className can't restack the lockup.
   const layoutStyle: CSSProperties = {
     display: orientation === "vertical" ? "flex" : "inline-flex",
     flexDirection: orientation === "vertical" ? "column" : "row",
@@ -62,32 +60,17 @@ export function Logo({
   return (
     <span className={cls} style={{ ...layoutStyle, ...style }}>
       {showIcon && (
-        <Icon
-          name="stirling-mark"
+        <img
           className="sui-logo__mark"
-          size={iconHeight}
-          title={showText ? undefined : alt}
+          src={markUrl}
+          alt={showText ? "" : alt}
+          style={{ height: iconHeight, width: "auto" }}
         />
       )}
       {showText && (
-        <>
-          <img
-            className="sui-logo__wordmark sui-logo__wordmark--light"
-            src={wordmarkLightUrl}
-            alt={alt}
-            width={58}
-            height={21}
-            style={{ height: textHeight }}
-          />
-          <img
-            className="sui-logo__wordmark sui-logo__wordmark--dark"
-            src={wordmarkDarkUrl}
-            alt={alt}
-            width={58}
-            height={21}
-            style={{ height: textHeight }}
-          />
-        </>
+        <span className="sui-logo__name" style={{ fontSize: textHeight }}>
+          {APP_NAME}
+        </span>
       )}
     </span>
   );

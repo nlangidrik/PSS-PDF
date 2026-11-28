@@ -60,7 +60,7 @@ class ReactRoutingControllerTest {
         assertEquals(MediaType.TEXT_HTML, response.getHeaders().getContentType());
         String body = response.getBody();
         assertNotNull(body);
-        assertTrue(body.contains("Stirling PDF"));
+        assertTrue(body.contains("BytePaper"));
     }
 
     @Test
@@ -93,7 +93,7 @@ class ReactRoutingControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertTrue(response.getBody().contains("Stirling PDF"));
+        assertTrue(response.getBody().contains("BytePaper"));
     }
 
     @Test
@@ -106,7 +106,7 @@ class ReactRoutingControllerTest {
         assertEquals(MediaType.TEXT_HTML, response.getHeaders().getContentType());
         String body = response.getBody();
         assertNotNull(body);
-        assertTrue(body.contains("Stirling PDF"));
+        assertTrue(body.contains("BytePaper"));
     }
 
     // --- mobile scanner route ---
@@ -178,7 +178,7 @@ class ReactRoutingControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertTrue(response.getBody().contains("Stirling PDF"));
+        assertTrue(response.getBody().contains("BytePaper"));
     }
 
     @Test
@@ -212,7 +212,7 @@ class ReactRoutingControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertTrue(response.getBody().contains("<title>Prerender Test - Stirling PDF</title>"));
+        assertTrue(response.getBody().contains("<title>Prerender Test - BytePaper</title>"));
         // context path applied on the way out, then memoised under the route key
         assertTrue(response.getBody().contains("window.STIRLING_PDF_API_BASE_URL"));
         assertEquals(Set.of("prerender-test"), prerenderedCache().keySet());
@@ -276,7 +276,7 @@ class ReactRoutingControllerTest {
         assertEquals(HttpStatus.OK, response.statusCode());
         assertInstanceOf(EntityResponse.class, response);
         Object body = ((EntityResponse<?>) response).entity();
-        assertTrue(body.toString().contains("Stirling PDF"));
+        assertTrue(body.toString().contains("BytePaper"));
     }
 
     @Test
