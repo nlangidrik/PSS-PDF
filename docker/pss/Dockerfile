@@ -147,8 +147,8 @@ ENV VERSION_TAG=$VERSION_TAG \
     SAL_TMP=/tmp/stirling-pdf/libre
 
 # Metadata labels
-LABEL org.opencontainers.image.title="PSS PDF" \
-      org.opencontainers.image.description="PSS PDF editor - MIT core build of Stirling PDF" \
+LABEL org.opencontainers.image.title="BytePaper" \
+      org.opencontainers.image.description="BytePaper editor - MIT core build of Stirling PDF" \
       org.opencontainers.image.source="https://github.com/nlangidrik/PSS-PDF" \
       org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.vendor="RMI Public School System" \

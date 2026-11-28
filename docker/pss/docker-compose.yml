@@ -1,4 +1,4 @@
-# PSS PDF editor. Bound to localhost only: it has no login of its own, so it must
+# BytePaper editor. Bound to localhost only: it has no login of its own, so it must
 # only be reached through the PSS nginx, which requires a pss.edu.mh Google sign-in.
 #   docker compose -f docker/pss/docker-compose.yml up -d --build
 services:
@@ -17,7 +17,7 @@ services:
       - ./data/customFiles:/customFiles
       - ./data/tessdata:/usr/share/tessdata
     environment:
-      UI_APPNAMENAVBAR: "PSS PDF"
+      UI_APPNAMENAVBAR: "BytePaper"
       SYSTEM_DEFAULTLOCALE: "en-US"
       SYSTEM_GOOGLEVISIBILITY: "false"
       SYSTEM_SHOWUPDATE: "false"

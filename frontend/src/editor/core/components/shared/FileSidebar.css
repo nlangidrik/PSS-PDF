@@ -94,6 +94,25 @@
   flex-shrink: 0;
 }
 
+.file-sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.file-sidebar-tagline {
+  font-size: 0.65rem;
+  line-height: 1.2;
+  color: var(--c-text-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 48rem) {
+  .file-sidebar-tagline {
+    display: none;
+  }
+}
+
 .file-sidebar-collapse-toggle {
   margin-left: auto;
   flex-shrink: 0;

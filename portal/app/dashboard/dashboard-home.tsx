@@ -10,7 +10,7 @@ export default function DashboardHome({
   return (
     <div className="max-w-3xl space-y-8">
       <div>
-        <h1 className="text-3xl font-semibold text-[#003366] dark:text-white">PSS PDF</h1>
+        <h1 className="text-3xl font-semibold text-[#003366] dark:text-white">BytePaper</h1>
         <p className="mt-2 text-muted-foreground">
           {name} · {email}
         </p>

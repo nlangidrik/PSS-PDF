@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import { useEffect, useRef } from "react";
 import { PssLogo } from "@/components/pss-logo";
 import { StaffPasswordForm } from "@/components/StaffPasswordForm";
-import { APP_NAME, ORG_NAME } from "@/lib/brand";
+import { APP_NAME, APP_TAGLINE, ORG_NAME } from "@/lib/brand";
 
 export default function LandingClient({
   passwordLogin = false,
@@ -176,15 +176,11 @@ export default function LandingClient({
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .logo-circle {
-          width: 108px;
-          height: 108px;
-          border-radius: 50%;
-          border: 2px solid rgba(56,140,220,0.38);
-          overflow: hidden;
+          width: auto;
+          height: auto;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(15,27,56,0.6);
           position: relative;
           z-index: 1;
         }
@@ -197,6 +193,17 @@ export default function LandingClient({
           text-align: center;
           animation: fadeUp 0.6s 0.1s ease both;
           letter-spacing: -0.02em;
+        }
+
+        .landing-tagline {
+          color: rgba(255,255,255,0.55);
+          font-size: 13px;
+          margin: 8px 0 0;
+          white-space: nowrap;
+        }
+
+        @media (max-width: 40rem) {
+          .landing-tagline { display: none; }
         }
 
         .landing-subtitle {
@@ -377,11 +384,12 @@ export default function LandingClient({
             <div className="logo-ring-outer" />
             <div className="logo-ring-dashed" />
             <div className="logo-circle">
-              <PssLogo showText={false} size={96} />
+              <PssLogo showText={false} height={96} />
             </div>
           </div>
 
           <h1 className="landing-h1">{APP_NAME}</h1>
+          <p className="landing-tagline">{APP_TAGLINE}</p>
           <p className="landing-subtitle">PDF editor for PSS staff</p>
 
           {passwordLogin ? (

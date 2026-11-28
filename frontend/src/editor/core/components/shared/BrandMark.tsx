@@ -1,19 +1,19 @@
-import pssLogoUrl from "@editor/assets/brand/pss-logo.png";
+import bytepaperIconUrl from "@editor/assets/brand/bytepaper-icon.png";
 
 interface BrandMarkProps {
-  /** Height of the seal (CSS length). */
+  /** Height of the icon (CSS length). */
   height?: string;
   className?: string;
 }
 
-/** PSS seal used in the navigation rail. */
+/** Simplified icon for the navigation rail and other small slots. */
 export function BrandMark({ height = "1.6rem", className }: BrandMarkProps) {
   return (
     <img
-      src={pssLogoUrl}
-      alt="PSS PDF"
+      src={bytepaperIconUrl}
+      alt="BytePaper"
       className={className}
-      style={{ height, width: height, borderRadius: "50%", objectFit: "cover", display: "block" }}
+      style={{ height, width: "auto", objectFit: "contain", display: "block" }}
     />
   );
 }

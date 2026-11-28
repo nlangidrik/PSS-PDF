@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { APP_NAME, LOGO_PATH, ORG_NAME } from "@/lib/brand";
+import { APP_NAME, APP_TAGLINE, ICON_PATH, LOGO_PATH, ORG_NAME } from "@/lib/brand";
 import { withBasePath } from "@/lib/base-path";
 import { useState, useEffect, useCallback } from "react";
 import { Menu, X, PanelLeftClose, PanelLeftOpen } from "lucide-react";
@@ -32,10 +32,22 @@ function SidebarContent({ pathname, navGroups, isAdmin = false, onLinkClick, col
     <>
       <div className={`flex flex-col items-center py-4 border-b border-blue-800 dark:border-slate-700 ${collapsed ? "px-2" : "px-4 md:px-6"}`}>
         <Link href="/logout" className="focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-lg p-1">
-          <Image src={withBasePath(LOGO_PATH)} alt={APP_NAME} width={60} height={60} className={collapsed ? "w-10 h-10" : "w-12 h-12 md:w-16 md:h-16"} priority />
+          <Image
+            src={withBasePath(collapsed ? ICON_PATH : LOGO_PATH)}
+            alt={APP_NAME}
+            width={1024}
+            height={1024}
+            className={`object-contain ${collapsed ? "h-10 w-10" : "h-12 w-12 md:h-16 md:w-16"}`}
+            priority
+          />
         </Link>
         {!collapsed && (
-          <span className="mt-2 font-bold text-sm md:text-lg text-center text-white dark:text-slate-100">{APP_NAME}</span>
+          <>
+            <span className="mt-2 font-bold text-sm md:text-lg text-center text-white dark:text-slate-100">{APP_NAME}</span>
+            <span className="mt-0.5 hidden whitespace-nowrap text-center text-[11px] font-normal text-blue-200/80 md:block">
+              {APP_TAGLINE}
+            </span>
+          </>
         )}
       </div>
       <nav className="flex-1 mt-4 px-2">

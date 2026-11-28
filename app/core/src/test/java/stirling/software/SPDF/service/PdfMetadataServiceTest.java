@@ -122,7 +122,7 @@ class PdfMetadataServiceTest {
         // Verify the right calls were made to the document info
         // We only need to verify some of the basic setters were called
         verify(testInfo).setTitle(any());
-        verify(testInfo).setProducer(STIRLING_PDF_LABEL);
+        verify(testInfo).setProducer("BytePaper (based on Stirling-PDF)");
         verify(testInfo).setModificationDate(any(Calendar.class));
     }
 
@@ -149,7 +149,7 @@ class PdfMetadataServiceTest {
         verify(testInfo).setCreator(STIRLING_PDF_LABEL);
         verify(testInfo).setCreationDate(org.mockito.ArgumentMatchers.any(Calendar.class));
         verify(testInfo).setTitle("Test Title");
-        verify(testInfo).setProducer(STIRLING_PDF_LABEL);
+        verify(testInfo).setProducer("BytePaper (based on Stirling-PDF)");
         verify(testInfo).setSubject("Test Subject");
         verify(testInfo).setKeywords("Test Keywords");
         verify(testInfo).setModificationDate(org.mockito.ArgumentMatchers.any(Calendar.class));
@@ -218,7 +218,7 @@ class PdfMetadataServiceTest {
 
         // Assert - should NOT set a new creation date
         verify(testInfo).setTitle("Test Title");
-        verify(testInfo).setProducer(STIRLING_PDF_LABEL);
+        verify(testInfo).setProducer("BytePaper (based on Stirling-PDF)");
         verify(testInfo).setSubject("Test Subject");
         verify(testInfo).setKeywords("Test Keywords");
         verify(testInfo).setModificationDate(org.mockito.ArgumentMatchers.any(Calendar.class));

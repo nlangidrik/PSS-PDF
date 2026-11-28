@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { APP_NAME, ORG_NAME } from "@/lib/brand";
+import { APP_NAME, APP_TAGLINE, ORG_NAME } from "@/lib/brand";
 import { PssLogo } from "@/components/pss-logo";
 import { StaffPasswordForm } from "@/components/StaffPasswordForm";
 
@@ -18,11 +18,12 @@ export default function LoginClient({
     <div className="min-h-screen bg-[#0b1628] flex items-center justify-center p-6 text-white">
       <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-8 text-center space-y-6">
         <div className="flex justify-center">
-          <PssLogo showText={false} size={72} />
+          <PssLogo showText={false} height={96} />
         </div>
         <div>
           <p className="text-sm text-blue-100">{ORG_NAME}</p>
           <h1 className="mt-2 text-3xl font-semibold">{APP_NAME}</h1>
+          <p className="mt-1 hidden whitespace-nowrap text-xs text-blue-100/70 sm:block">{APP_TAGLINE}</p>
           <p className="mt-2 text-sm text-blue-100/80">
             {passwordLogin
               ? "Sign in with your test account to continue."

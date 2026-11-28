@@ -1,4 +1,4 @@
-import { Logo } from "@editor/ui/Logo";
+import { APP_TAGLINE, Logo } from "@editor/ui/Logo";
 
 export interface SidebarHeaderProps {
   className?: string;
@@ -8,7 +8,10 @@ export interface SidebarHeaderProps {
 export function SidebarHeader({ className }: SidebarHeaderProps) {
   return (
     <div className={`file-sidebar-header${className ? ` ${className}` : ""}`}>
-      <Logo variant="textOnly" textHeight="1.3rem" />
+      <div className="file-sidebar-brand">
+        <Logo variant="textOnly" textHeight="1.3rem" />
+        <span className="file-sidebar-tagline">{APP_TAGLINE}</span>
+      </div>
     </div>
   );
 }

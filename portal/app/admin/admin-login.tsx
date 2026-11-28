@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { signIn } from "next-auth/react"
 import { useSearchParams } from "next/navigation"
 import { PssLogo } from "@/components/pss-logo"
+import { APP_NAME, APP_TAGLINE } from "@/lib/brand"
 
 export default function AdminLoginPage() {
   const searchParams = useSearchParams()
@@ -203,8 +204,8 @@ export default function AdminLoginPage() {
 
         .admin-logo-wrap {
           position: relative;
-          width: 100px;
-          height: 100px;
+          width: 140px;
+          height: 120px;
           margin: 0 auto 20px;
           display: flex;
           align-items: center;
@@ -228,11 +229,8 @@ export default function AdminLoginPage() {
         }
 
         .admin-logo-circle {
-          width: 90px;
-          height: 90px;
-          border-radius: 50%;
-          border: 2px solid rgba(56, 140, 220, 0.5);
-          background: rgba(15, 27, 56, 0.9);
+          width: auto;
+          height: auto;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -273,6 +271,19 @@ export default function AdminLoginPage() {
           position: relative;
           z-index: 1;
           letter-spacing: -0.02em;
+        }
+
+        .admin-tagline {
+          color: rgba(255, 255, 255, 0.55);
+          font-size: 13px;
+          margin: 8px 0 0;
+          white-space: nowrap;
+          position: relative;
+          z-index: 1;
+        }
+
+        @media (max-width: 40rem) {
+          .admin-tagline { display: none; }
         }
 
         .admin-subtitle {
@@ -594,7 +605,7 @@ export default function AdminLoginPage() {
               <div className="admin-logo-ring-1" />
               <div className="admin-logo-ring-2" />
               <div className="admin-logo-circle">
-                <PssLogo showText={false} size={80} />
+                <PssLogo showText={false} height={88} />
               </div>
             </div>
 
@@ -604,7 +615,8 @@ export default function AdminLoginPage() {
               <span className="admin-live-dot" />
             </div>
 
-            <h1 className="admin-title">PSS PDF</h1>
+            <h1 className="admin-title">{APP_NAME}</h1>
+            <p className="admin-tagline">{APP_TAGLINE}</p>
             <p className="admin-subtitle">Administrator sign-in</p>
           </div>
 

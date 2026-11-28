@@ -1,21 +1,23 @@
 import type { CSSProperties } from "react";
-import pssLogoUrl from "@editor/assets/brand/pss-logo.png";
+import bytepaperIconUrl from "@editor/assets/brand/bytepaper-icon.png";
+import bytepaperLogoUrl from "@editor/assets/brand/bytepaper-logo.png";
 import "@editor/ui/Logo.css";
 
-const APP_NAME = "PSS PDF";
+export const APP_NAME = "BytePaper";
+export const APP_TAGLINE = "Less Paper, More Possibilities";
 
-/** iconOnly = seal; textOnly = app name; iconAndText = both. */
+/** iconOnly = simplified icon; textOnly = app name; iconAndText = full logo and name. */
 export type LogoVariant = "iconOnly" | "iconAndText" | "textOnly";
 
 interface LogoProps {
   variant?: LogoVariant;
-  /** Layout for iconAndText: seal left of the name, or stacked above it. */
+  /** Layout for iconAndText: mark left of the name, or stacked above it. */
   orientation?: "horizontal" | "vertical";
-  /** Height of the seal (CSS length). */
+  /** Height of the mark (CSS length). */
   iconHeight?: string;
   /** Height of the name (CSS length). */
   textHeight?: string;
-  /** Gap between seal and name. */
+  /** Gap between mark and name. */
   gap?: string;
   className?: string;
   style?: CSSProperties;
@@ -23,8 +25,8 @@ interface LogoProps {
 }
 
 /**
- * PSS seal and name. The seal is the same in both themes; the name uses the
- * current text colour.
+ * App mark and name. iconOnly uses the simplified icon. iconAndText uses the
+ * full logo. The name uses the current text colour.
  */
 export function Logo({
   variant = "iconAndText",
@@ -38,6 +40,7 @@ export function Logo({
 }: LogoProps) {
   const showIcon = variant === "iconOnly" || variant === "iconAndText";
   const showText = variant === "textOnly" || variant === "iconAndText";
+  const markUrl = variant === "iconOnly" ? bytepaperIconUrl : bytepaperLogoUrl;
 
   const cls = [
     "sui-logo",
@@ -59,9 +62,9 @@ export function Logo({
       {showIcon && (
         <img
           className="sui-logo__mark"
-          src={pssLogoUrl}
+          src={markUrl}
           alt={showText ? "" : alt}
-          style={{ height: iconHeight, width: iconHeight }}
+          style={{ height: iconHeight, width: "auto" }}
         />
       )}
       {showText && (

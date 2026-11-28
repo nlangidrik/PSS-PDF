@@ -1465,7 +1465,7 @@ public class ConvertPDFToPDFA {
             }
         }
 
-        info.setProducer("Stirling-PDF Sanitizer");
+        info.setProducer("BytePaper (based on Stirling-PDF)");
     }
 
     private void removeForbiddenActions(PDDocument doc) {

@@ -162,8 +162,8 @@ class ApplicationPropertiesLogicTest {
         ApplicationProperties.EnterpriseEdition.CustomMetadata eMeta = ee.getCustomMetadata();
         eMeta.setCreator("  ");
         eMeta.setProducer(null);
-        assertEquals("Stirling-PDF", eMeta.getCreator());
-        assertEquals("Stirling-PDF", eMeta.getProducer());
+        assertEquals("BytePaper", eMeta.getCreator());
+        assertEquals("BytePaper (based on Stirling-PDF)", eMeta.getProducer());
     }
 
     @Test
@@ -172,8 +172,8 @@ class ApplicationPropertiesLogicTest {
         Premium.ProFeatures.CustomMetadata pMeta = pf.getCustomMetadata();
         pMeta.setCreator("");
         pMeta.setProducer("");
-        assertEquals("Stirling-PDF", pMeta.getCreator());
-        assertEquals("Stirling-PDF", pMeta.getProducer());
+        assertEquals("BytePaper", pMeta.getCreator());
+        assertEquals("BytePaper (based on Stirling-PDF)", pMeta.getProducer());
     }
 
     @Test

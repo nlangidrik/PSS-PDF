@@ -346,7 +346,7 @@ pub fn apply_provisioning_if_present(app_handle: &AppHandle) -> Result<(), Strin
             app_handle
                 .dialog()
                 .message(message)
-                .title("Stirling PDF provisioning")
+                .title("BytePaper provisioning")
                 .kind(MessageDialogKind::Warning)
                 .show(|_| {});
             return Ok(());

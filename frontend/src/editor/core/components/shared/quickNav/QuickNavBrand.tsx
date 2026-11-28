@@ -11,7 +11,7 @@ export interface QuickNavBrandProps {
 
 export function QuickNavBrand({ onReturnHome }: QuickNavBrandProps) {
   const { t } = useTranslation();
-  const label = t("quickNav.home", "PSS PDF");
+  const label = t("quickNav.home", "BytePaper");
   const host = useQuickNavHost();
 
   // Nothing happens where the app has not offered the action.

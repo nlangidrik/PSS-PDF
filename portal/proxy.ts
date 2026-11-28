@@ -17,7 +17,7 @@ export default async function proxy(req: NextRequest) {
     pathname.startsWith("/_next/") ||
     pathname === "/favicon.ico" ||
     pathname === "/favicon.png" ||
-    pathname === "/pss-logo.png";
+    pathname.startsWith("/branding/");
 
   if (isPublicPath) {
     return NextResponse.next();
@@ -35,5 +35,5 @@ export default async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|favicon.png|pss-logo.png).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|favicon.png|branding/).*)"],
 };

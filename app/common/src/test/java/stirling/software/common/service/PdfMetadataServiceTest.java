@@ -211,7 +211,7 @@ class PdfMetadataServiceTest {
                 service.setMetadataToPdf(doc, md);
 
                 PDDocumentInformation info = doc.getDocumentInformation();
-                assertEquals(LABEL, info.getProducer());
+                assertEquals(PdfMetadataService.PRODUCER_LABEL, info.getProducer());
                 assertEquals("Doc Title", info.getTitle());
                 assertEquals("Doc Subject", info.getSubject());
                 assertEquals("a, b, c", info.getKeywords());
@@ -288,7 +288,7 @@ class PdfMetadataServiceTest {
                 // extract + re-apply keeps title/author but rewrites producer to the label.
                 assertEquals("Original Title", info.getTitle());
                 assertEquals("Original Author", info.getAuthor());
-                assertEquals(LABEL, info.getProducer());
+                assertEquals(PdfMetadataService.PRODUCER_LABEL, info.getProducer());
             }
         }
 
@@ -302,7 +302,7 @@ class PdfMetadataServiceTest {
                 service.setMetadataToPdf(doc, md, true);
 
                 PDDocumentInformation info = doc.getDocumentInformation();
-                assertEquals(LABEL, info.getProducer());
+                assertEquals(PdfMetadataService.PRODUCER_LABEL, info.getProducer());
                 assertNull(info.getTitle());
                 assertNull(info.getSubject());
                 assertNull(info.getKeywords());
@@ -351,7 +351,7 @@ class PdfMetadataServiceTest {
                 assertEquals("Custom Creator", info.getCreator());
                 // Producer is set to the label by both setNewDocumentMetadata and
                 // setCommonMetadata.
-                assertEquals(LABEL, info.getProducer());
+                assertEquals(PdfMetadataService.PRODUCER_LABEL, info.getProducer());
             }
         }
 

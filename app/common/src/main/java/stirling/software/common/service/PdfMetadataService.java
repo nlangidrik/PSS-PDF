@@ -21,6 +21,9 @@ public class PdfMetadataService {
     /** ({@code {labels}}). Written by the classify-and-label tool. */
     public static final String CLASSIFICATION_KEY = "StirlingPDFClassification";
 
+    /** Producer stamped on documents this app writes. Keeps the Stirling-PDF credit. */
+    public static final String PRODUCER_LABEL = "BytePaper (based on Stirling-PDF)";
+
     private final ApplicationProperties applicationProperties;
     private final String stirlingPDFLabel;
     private final UserServiceInterface userService;
@@ -138,7 +141,7 @@ public class PdfMetadataService {
                             .getProFeatures()
                             .getCustomMetadata()
                             .getCreator();
-            pdf.getDocumentInformation().setProducer(stirlingPDFLabel);
+            pdf.getDocumentInformation().setProducer(PRODUCER_LABEL);
         }
 
         pdf.getDocumentInformation().setCreator(creator);
@@ -154,7 +157,7 @@ public class PdfMetadataService {
     private void setCommonMetadata(PDDocument pdf, PdfMetadata pdfMetadata) {
         String title = pdfMetadata.getTitle();
         pdf.getDocumentInformation().setTitle(title);
-        pdf.getDocumentInformation().setProducer(stirlingPDFLabel);
+        pdf.getDocumentInformation().setProducer(PRODUCER_LABEL);
         pdf.getDocumentInformation().setSubject(pdfMetadata.getSubject());
         pdf.getDocumentInformation().setKeywords(pdfMetadata.getKeywords());
 

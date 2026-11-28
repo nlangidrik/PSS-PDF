@@ -1,6 +1,7 @@
-export const APP_NAME = "PSS PDF";
+export const APP_NAME = "BytePaper";
+export const APP_TAGLINE = "Less Paper, More Possibilities";
 export const ORG_NAME = "RMI Public School System";
-export const LOGO_PATH = "/pss-logo.png";
+export const LOGO_PATH = "/branding/bytepaper-logo.png";
+export const ICON_PATH = "/branding/bytepaper-icon.png";
 
-export const APP_DESCRIPTION =
-  "PSS PDF is the RMI Public School System’s PDF editor — staff sign in with a PSS account to upload, arrange, sign, edit, and redact PDFs.";
+export const APP_DESCRIPTION = APP_TAGLINE;

@@ -46,7 +46,7 @@ function MFASetupContent({ onMfaSetupComplete }: MFASetupSlideProps) {
   const setupCompleteRef = useRef(false);
   const { signOut } = useAuth();
   const accountLogout = useAccountLogout();
-  const qrLogoSrc = `${BASE_PATH}/modern-logo/StirlingPDFLogoNoTextDark.svg`;
+  const qrLogoSrc = `${BASE_PATH}/modern-logo/logo192.png`;
 
   const normalizeMfaCode = useCallback(
     (value: string) => value.replace(/\D/g, "").slice(0, 6),

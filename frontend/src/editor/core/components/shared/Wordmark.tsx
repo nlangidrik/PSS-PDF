@@ -1,20 +1,30 @@
-import React from "react";
-import { useMantineColorScheme } from "@mantine/core";
-import { useLogoAssets } from "@editor/hooks/useLogoAssets";
+import type { CSSProperties } from "react";
 
-interface WordmarkProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface WordmarkProps {
   alt?: string;
   muted?: boolean;
+  className?: string;
+  style?: CSSProperties;
 }
 
-export function Wordmark({ alt = "", muted = false, ...props }: WordmarkProps) {
-  const { colorScheme } = useMantineColorScheme();
-  const isDark = colorScheme === "dark";
-  const { wordmark } = useLogoAssets();
-
-  // light: black text (standard) or grey text (muted)
-  // dark:  white text for both variants
-  const src = isDark ? wordmark.white : muted ? wordmark.grey : wordmark.black;
-
-  return <img src={src} alt={alt} {...props} />;
+export function Wordmark({ alt = "BytePaper", muted = false, className, style }: WordmarkProps) {
+  const fontSize = style?.height ?? "1rem";
+  return (
+    <span
+      className={className}
+      role="img"
+      aria-label={alt}
+      style={{
+        ...style,
+        height: "auto",
+        fontSize,
+        fontWeight: 650,
+        lineHeight: 1,
+        whiteSpace: "nowrap",
+        opacity: muted ? 0.72 : undefined,
+      }}
+    >
+      BytePaper
+    </span>
+  );
 }

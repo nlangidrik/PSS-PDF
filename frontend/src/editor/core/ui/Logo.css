@@ -1,4 +1,4 @@
-/* PSS seal plus the app name. The name follows the current text colour. */
+/* App mark plus the name. The name follows the current text colour. */
 .sui-logo {
   display: inline-flex;
   align-items: center;
@@ -13,8 +13,7 @@
 
 .sui-logo__mark {
   display: block;
-  border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .sui-logo__name {

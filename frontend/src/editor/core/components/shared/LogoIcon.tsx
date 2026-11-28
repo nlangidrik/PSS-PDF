@@ -1,14 +1,10 @@
 import React from "react";
-import { useMantineColorScheme } from "@mantine/core";
-import { useLogoPath } from "@editor/hooks/useLogoPath";
+import bytepaperIconUrl from "@editor/assets/brand/bytepaper-icon.png";
 
 interface LogoIconProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   alt?: string;
 }
 
-export function LogoIcon({ alt = "", ...props }: LogoIconProps) {
-  const { colorScheme } = useMantineColorScheme();
-  const logoPaths = useLogoPath();
-  const src = colorScheme === "dark" ? logoPaths.dark : logoPaths.light;
-  return <img src={src} alt={alt} {...props} />;
+export function LogoIcon({ alt = "BytePaper", ...props }: LogoIconProps) {
+  return <img src={bytepaperIconUrl} alt={alt} {...props} style={{ objectFit: "contain", ...props.style }} />;
 }

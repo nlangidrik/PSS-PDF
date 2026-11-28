@@ -17,7 +17,7 @@ async function main() {
     where: { email },
     update: {},
     create: {
-      name: "PSS PDF Admin",
+      name: "BytePaper Admin",
       email,
       password: hashedPassword,
       role: "ADMIN",

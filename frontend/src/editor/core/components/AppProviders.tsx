@@ -39,7 +39,7 @@ function AppInitializer() {
 }
 
 function BrandingAssetManager() {
-  const { favicon, logo192 } = useLogoAssets();
+  const { favicon, appleTouch } = useLogoAssets();
   const { manifestHref } = useManifestUrl();
 
   useEffect(() => {
@@ -56,9 +56,9 @@ function BrandingAssetManager() {
 
     setLinkHref('link[rel="icon"]', favicon);
     setLinkHref('link[rel="shortcut icon"]', favicon);
-    setLinkHref('link[rel="apple-touch-icon"]', logo192);
+    setLinkHref('link[rel="apple-touch-icon"]', appleTouch);
     setLinkHref('link[rel="manifest"]', manifestHref);
-  }, [favicon, logo192, manifestHref]);
+  }, [favicon, appleTouch, manifestHref]);
 
   return null;
 }

@@ -657,7 +657,7 @@ export default function SuperSearch({
           placeholder={
             isMobile
               ? t("superSearch.placeholderShort", "Search")
-              : t("superSearch.placeholder", "Search PSS PDF")
+              : t("superSearch.placeholder", "Search BytePaper")
           }
           icon={<Icon name="search" size="1.1rem" />}
           autoComplete="off"

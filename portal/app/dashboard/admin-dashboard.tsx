@@ -44,7 +44,7 @@ export default function AdminDashboard({
     <div className="max-w-6xl space-y-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-semibold text-[#003366] dark:text-white">PSS PDF</h1>
+          <h1 className="text-3xl font-semibold text-[#003366] dark:text-white">BytePaper</h1>
           <p className="mt-2 text-muted-foreground">
             {name} · {email}
           </p>
